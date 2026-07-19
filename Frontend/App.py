@@ -20,18 +20,29 @@ st.set_page_config(
     layout="centered"
 )
 
-# 4. 100% Working Solid Agriculture Image URL (Unsplash Source)
-# Yeh link direct Streamlit khud internet se load karega, aap ko download karne ki zaroorat nahi!
-banner_url = "https://images.unsplash.com/photo-1592982537447-6f2a6a0c7c18?q=80&w=1200&auto=format&fit=crop"
+# 4. Beautiful Custom CSS Hero Banner (Zero External Dependencies!)
+# Yeh internet ke bina bhi ek professional green gradient banner display karega
+st.markdown(
+    """
+    <div style="
+        background: linear-gradient(135deg, #1e5128 0%, #4e9f3d 100%);
+        padding: 40px;
+        border-radius: 15px;
+        text-align: center;
+        margin-bottom: 25px;
+        box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+    ">
+        <h1 style="color: white; font-family: 'Segoe UI', sans-serif; margin: 0; font-size: 2.5rem;">
+            🌾 Crop Yield Prediction Dashboard
+        </h1>
+        <p style="color: #d8f3dc; font-family: 'Segoe UI', sans-serif; margin-top: 10px; font-size: 1.1rem; opacity: 0.9;">
+            FastAPI backend se connected machine learning prediction system (Python 3.14)
+        </p>
+    </div>
+    """,
+    unsafe_html=True
+)
 
-try:
-    st.image(banner_url, use_container_width=True)
-except:
-    st.warning("Banner image load nahi ho saki, lekin aap ka dashboard ready hai!")
-
-# 5. Titles & Headers
-st.title("🌾 Crop Yield Prediction Dashboard")
-st.write("FastAPI backend se connected machine learning prediction system (Python 3.14)")
 st.markdown("---")
 
 # Yahan se aage aap ka baaki prediction ka code (inputs, buttons, etc.) shuru hoga...
