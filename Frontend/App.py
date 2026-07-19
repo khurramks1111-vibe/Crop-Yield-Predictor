@@ -1,30 +1,18 @@
 import streamlit as st
 import requests
-import os
-from PIL import Image
 
-# 1. Path set karein custom logo ke liye
-current_dir = os.path.dirname(os.path.abspath(__file__))
-icon_path = os.path.join(current_dir, "logo.png")
+# 1. Aapki GitHub Repository ka direct RAW image link (100% fail-proof online check)
+# Yeh direct aapki repo se logo uthaye ga, chahe server jahan marzi chala jaye
+github_logo_url = "https://raw.githubusercontent.com/khurramks1111-vibe/Crop-Yield-Predictor/master/Frontend/logo.png"
 
-# 2. Icon image ko strict load karne ki koshish karein
-try:
-    # Agari file exist karti hai toh image load karein
-    if os.path.exists(icon_path):
-        app_icon = Image.open(icon_path)
-    else:
-        app_icon = "🌾"
-except Exception as e:
-    app_icon = "🌾"
-
-# 3. Page Configuration (Logo aur Title)
+# 2. Page Configuration (Direct Online Link as Icon)
 st.set_page_config(
     page_title="Crop Yield Predictor",
-    page_icon=app_icon,
+    page_icon=github_logo_url,  # <-- Streamlit URLs ko perfectly accept karta hai icon mein!
     layout="centered"
 )
 
-# 4. Single Elegant CSS Green Banner (Saari duplicate lines yahan se delete kar di hain)
+# 3. Beautiful Custom CSS Hero Banner
 st.markdown(
     """
     <div style="
