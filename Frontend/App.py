@@ -7,20 +7,24 @@ from PIL import Image
 current_dir = os.path.dirname(os.path.abspath(__file__))
 icon_path = os.path.join(current_dir, "logo.png")
 
-# 2. Icon image ko load karne ki koshish karein
+# 2. Icon image ko strict load karne ki koshish karein
 try:
-    app_icon = Image.open(icon_path)
-except:
-    app_icon = "🌾"  # Fallback agar logo.png na mile
+    # Agari file exist karti hai toh image load karein
+    if os.path.exists(icon_path):
+        app_icon = Image.open(icon_path)
+    else:
+        app_icon = "🌾"
+except Exception as e:
+    app_icon = "🌾"
 
-# 3. Page Configuration (Logo aur Title set)
+# 3. Page Configuration (Logo aur Title)
 st.set_page_config(
     page_title="Crop Yield Predictor",
     page_icon=app_icon,
     layout="centered"
 )
 
-# 4. Beautiful Custom CSS Hero Banner (Fixed Parameter!)
+# 4. Single Elegant CSS Green Banner (Saari duplicate lines yahan se delete kar di hain)
 st.markdown(
     """
     <div style="
@@ -31,15 +35,15 @@ st.markdown(
         margin-bottom: 25px;
         box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
     ">
-        <h1 style="color: white; font-family: 'Segoe UI', sans-serif; margin: 0; font-size: 2.5rem;">
+        <h1 style="color: white; font-family: 'Segoe UI', sans-serif; margin: 0; font-size: 2.3rem;">
             🌾 Crop Yield Prediction Dashboard
         </h1>
-        <p style="color: #d8f3dc; font-family: 'Segoe UI', sans-serif; margin-top: 10px; font-size: 1.1rem; opacity: 0.9;">
+        <p style="color: #d8f3dc; font-family: 'Segoe UI', sans-serif; margin-top: 10px; font-size: 1.1rem; opacity: 0.9; margin-bottom: 0;">
             FastAPI backend se connected machine learning prediction system (Python 3.14)
         </p>
     </div>
     """,
-    unsafe_allow_html=True  # <-- Yeh sahi parameter hai!
+    unsafe_allow_html=True
 )
 
 st.markdown("---")
