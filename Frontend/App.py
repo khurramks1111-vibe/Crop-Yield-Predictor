@@ -1,9 +1,9 @@
 import streamlit as st
 import requests
 import os
-import base64  # <-- Naya module jo logo ko text mein badle ga
+import base64  
 
-# 1. Logo image ko read kar ke Base64 String mein convert karne ka function
+# 1. Function to read a logo image and convert it into a Base64 string.
 def get_base64_image(image_path):
     try:
         if os.path.exists(image_path):
@@ -13,19 +13,19 @@ def get_base64_image(image_path):
         pass
     return "🌾"  # Fallback code
 
-# 2. Path nikalen aur base64 icon generate karein
+# 2. Find the leaves and drop the 64 icons.
 current_dir = os.path.dirname(os.path.abspath(__file__))
 icon_path = os.path.join(current_dir, "logo.png")
 app_icon_b64 = get_base64_image(icon_path)
 
-# 3. Page Configuration (Ab direct base64 data injection se logo render hoga!)
+# 3. Page Configuration 
 st.set_page_config(
     page_title="Crop Yield Predictor",
     page_icon=app_icon_b64,
     layout="centered"
 )
 
-# 4. Beautiful Custom CSS Hero Banner
+# 4. Custom CSS Hero Banner
 st.markdown(
     """
     <div style="
@@ -49,7 +49,6 @@ st.markdown(
 
 st.markdown("---")
 
-# Yahan se aage aap ka baaki prediction ka code (inputs, buttons, etc.) shuru hoga...
 
 # 5. Titles & Headers
 
