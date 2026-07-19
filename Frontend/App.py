@@ -20,8 +20,7 @@ st.set_page_config(
     layout="centered"
 )
 
-# 4. Beautiful Custom CSS Hero Banner (Zero External Dependencies!)
-# Yeh internet ke bina bhi ek professional green gradient banner display karega
+# 4. Beautiful Custom CSS Hero Banner (Fixed Parameter!)
 st.markdown(
     """
     <div style="
@@ -40,7 +39,7 @@ st.markdown(
         </p>
     </div>
     """,
-    unsafe_html=True
+    unsafe_allow_html=True  # <-- Yeh sahi parameter hai!
 )
 
 st.markdown("---")
