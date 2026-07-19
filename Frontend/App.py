@@ -2,20 +2,36 @@ import streamlit as st
 import requests
 import os
 
-# Page Configuration
+import streamlit as st
+import requests
+import os
+from PIL import Image  # <-- Icon image load karne ke liye zaroori hai
+
+# 1. Rasta (Path) set karein jahan logo image padi hai
+current_dir = os.path.dirname(os.path.abspath(__file__))
+icon_path = os.path.join(current_dir, "logo.png")
+
+# 2. Icon image ko load karein (agar file folder mein mojood hai)
+try:
+    app_icon = Image.open(icon_path)
+except:
+    app_icon = "🌾"  # Fallback agar logo.png na mile toh purana icon chalay
+
+# 3. Page Configuration (Naya PNG Icon lag gaya)
 st.set_page_config(
     page_title="Crop Yield Predictor",
-    page_icon="🌾",
+    page_icon=app_icon,
     layout="centered"
 )
 
+# 4. Hero Banner Image (Beautifull Online Image URL)
+banner_url = "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?q=80&w=1200&auto=format&fit=crop"
+st.image(banner_url, use_container_width=True)
+
+# 5. Titles & Headers
 st.title("🌾 Crop Yield Prediction Dashboard")
-# Header Banner Image (Aap is URL ko kisi bhi online image se change kar sakte hain)
-st.image(
-    "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=800&q=80", 
-    use_container_width=True,
-    caption="Smart Agriculture and Climate Impact Analysis"
-)
+st.write("FastAPI backend se connected machine learning prediction system (Python 3.14)")
+st.markdown("---")
 st.write("FastAPI with backend connected machine learning prediction system (Python 3.14)")
 st.markdown("---")
 
