@@ -51,11 +51,6 @@ st.markdown("---")
 # Yahan se aage aap ka baaki prediction ka code (inputs, buttons, etc.) shuru hoga...
 
 # 5. Titles & Headers
-st.title("🌾 Crop Yield Prediction Dashboard")
-st.write("FastAPI backend se connected machine learning prediction system (Python 3.14)")
-st.markdown("---")
-st.write("FastAPI with backend connected machine learning prediction system (Python 3.14)")
-st.markdown("---")
 
 # FastAPI Backend URL
 BACKEND_URL = os.environ.get("BACKEND_URL", "http://127.0.0.1:8000") + "/predict"
