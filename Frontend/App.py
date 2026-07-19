@@ -1,18 +1,31 @@
 import streamlit as st
 import requests
-import os  # <-- Yeh line missing thi, isay lazmi add karein!
+import os
+import base64  # <-- Naya module jo logo ko text mein badle ga
 
-# 1. Aapki GitHub Repository ka direct RAW image link
-github_logo_url = "https://raw.githubusercontent.com/khurramks1111-vibe/Crop-Yield-Predictor/master/Frontend/logo.png"
+# 1. Logo image ko read kar ke Base64 String mein convert karne ka function
+def get_base64_image(image_path):
+    try:
+        if os.path.exists(image_path):
+            with open(image_path, "rb") as img_file:
+                return f"data:image/png;base64,{base64.b64encode(img_file.read()).decode()}"
+    except Exception:
+        pass
+    return "🌾"  # Fallback code
 
-# 2. Page Configuration
+# 2. Path nikalen aur base64 icon generate karein
+current_dir = os.path.dirname(os.path.abspath(__file__))
+icon_path = os.path.join(current_dir, "logo.png")
+app_icon_b64 = get_base64_image(icon_path)
+
+# 3. Page Configuration (Ab direct base64 data injection se logo render hoga!)
 st.set_page_config(
     page_title="Crop Yield Predictor",
-    page_icon=github_logo_url,
+    page_icon=app_icon_b64,
     layout="centered"
 )
 
-# 3. Beautiful Custom CSS Hero Banner
+# 4. Beautiful Custom CSS Hero Banner
 st.markdown(
     """
     <div style="
