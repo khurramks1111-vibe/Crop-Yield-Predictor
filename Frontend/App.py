@@ -1,32 +1,40 @@
 import streamlit as st
 import requests
 import os
+from PIL import Image
 
-import streamlit as st
-import requests
-import os
-from PIL import Image  # <-- Icon image load karne ke liye zaroori hai
-
-# 1. Rasta (Path) set karein jahan logo image padi hai
+# 1. Path set karein custom logo ke liye
 current_dir = os.path.dirname(os.path.abspath(__file__))
 icon_path = os.path.join(current_dir, "logo.png")
 
-# 2. Icon image ko load karein (agar file folder mein mojood hai)
+# 2. Icon image ko load karne ki koshish karein
 try:
     app_icon = Image.open(icon_path)
 except:
-    app_icon = "🌾"  # Fallback agar logo.png na mile toh purana icon chalay
+    app_icon = "🌾"  # Fallback agar logo.png na mile
 
-# 3. Page Configuration (Naya PNG Icon lag gaya)
+# 3. Page Configuration (Logo aur Title set)
 st.set_page_config(
     page_title="Crop Yield Predictor",
     page_icon=app_icon,
     layout="centered"
 )
 
-# 4. Hero Banner Image (Beautifull Online Image URL)
-banner_url = "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?q=80&w=1200&auto=format&fit=crop"
-st.image(banner_url, use_container_width=True)
+# 4. 100% Working Solid Agriculture Image URL (Unsplash Source)
+# Yeh link direct Streamlit khud internet se load karega, aap ko download karne ki zaroorat nahi!
+banner_url = "https://images.unsplash.com/photo-1592982537447-6f2a6a0c7c18?q=80&w=1200&auto=format&fit=crop"
+
+try:
+    st.image(banner_url, use_container_width=True)
+except:
+    st.warning("Banner image load nahi ho saki, lekin aap ka dashboard ready hai!")
+
+# 5. Titles & Headers
+st.title("🌾 Crop Yield Prediction Dashboard")
+st.write("FastAPI backend se connected machine learning prediction system (Python 3.14)")
+st.markdown("---")
+
+# Yahan se aage aap ka baaki prediction ka code (inputs, buttons, etc.) shuru hoga...
 
 # 5. Titles & Headers
 st.title("🌾 Crop Yield Prediction Dashboard")
