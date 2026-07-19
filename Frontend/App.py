@@ -1,14 +1,14 @@
 import streamlit as st
 import requests
+import os  # <-- Yeh line missing thi, isay lazmi add karein!
 
-# 1. Aapki GitHub Repository ka direct RAW image link (100% fail-proof online check)
-# Yeh direct aapki repo se logo uthaye ga, chahe server jahan marzi chala jaye
+# 1. Aapki GitHub Repository ka direct RAW image link
 github_logo_url = "https://raw.githubusercontent.com/khurramks1111-vibe/Crop-Yield-Predictor/master/Frontend/logo.png"
 
-# 2. Page Configuration (Direct Online Link as Icon)
+# 2. Page Configuration
 st.set_page_config(
     page_title="Crop Yield Predictor",
-    page_icon=github_logo_url,  # <-- Streamlit URLs ko perfectly accept karta hai icon mein!
+    page_icon=github_logo_url,
     layout="centered"
 )
 
